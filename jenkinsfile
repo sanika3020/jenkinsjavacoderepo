@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'
         jdk 'JDK 1.8'
     }
 
@@ -13,15 +12,15 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Compile') {
             steps {
-                bat 'mvn clean install'
+                bat 'javac src\\PrimeChecker.java'
             }
         }
 
         stage('Run') {
             steps {
-                bat 'java -cp target/PrimeChecker-1.0-SNAPSHOT.jar com.example.PrimeChecker'
+                bat 'java -cp src PrimeChecker'
             }
         }
     }
